@@ -1,0 +1,702 @@
+[
+  {
+    "persona_id": "USER_001",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.27,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_002",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.5599999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_003",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.84,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_004",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.44,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_005",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.11000000000000001,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_006",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.33,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_007",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.47000000000000003,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_008",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.24000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_009",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.7799999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_010",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.4,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_011",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.14,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_012",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.4,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_013",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.58,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_014",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.19,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_015",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.7,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_016",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.36000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_017",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.6699999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_018",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.48,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_019",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.39,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_020",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.57,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_021",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.08000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_022",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.36000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_023",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.1,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_024",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.53,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_025",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.1,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_026",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.5599999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_027",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.16,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_028",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.42000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_029",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.69,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_030",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.5,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_031",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.33999999999999997,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_032",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.8099999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_033",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.28,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_034",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.42,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_035",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.32,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_036",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.6799999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_037",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.29000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_038",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.38,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_039",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.45999999999999996,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_040",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.85,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_041",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.82,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_042",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.7,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_043",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.53,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_044",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.32,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_045",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.27999999999999997,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_046",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.7899999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_047",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.5499999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_048",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.32,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_049",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.36000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_050",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.75,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_051",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.54,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_052",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.24000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_053",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.22999999999999998,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_054",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.15999999999999998,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_055",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.37,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_056",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.36000000000000004,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_057",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.27,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_058",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.38,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_059",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.35,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_060",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.34,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_061",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.33,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_062",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.6499999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_063",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.5499999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_064",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.73,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_065",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.6399999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_066",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.17,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_067",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.62,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_068",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.58,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_069",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.7899999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_070",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.6599999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_071",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.32,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_072",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.74,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_073",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.28,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_074",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.08000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_075",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.71,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_076",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.6799999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_077",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.09000000000000001,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_078",
+    "role": "Software Engineer",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.49,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_079",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.42,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_080",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.07,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_081",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.19,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_082",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.27,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_083",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.18000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_084",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.62,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_085",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.44,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_086",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.7799999999999999,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_087",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.58,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_088",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.32,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_089",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.39,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_090",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.51,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_091",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.73,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_092",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.22,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_093",
+    "role": "Researcher / Writer",
+    "context_switch_rate": "Low",
+    "simulated_entropy": 0.24000000000000002,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_094",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.73,
+    "status": "Burnout Risk"
+  },
+  {
+    "persona_id": "USER_095",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.41,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_096",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.6399999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_097",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.27999999999999997,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_098",
+    "role": "Quantitative Analyst",
+    "context_switch_rate": "Medium",
+    "simulated_entropy": 0.26,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_099",
+    "role": "Operations Lead",
+    "context_switch_rate": "High",
+    "simulated_entropy": 0.5599999999999999,
+    "status": "Balanced"
+  },
+  {
+    "persona_id": "USER_100",
+    "role": "Product Manager",
+    "context_switch_rate": "Extreme",
+    "simulated_entropy": 0.7799999999999999,
+    "status": "Burnout Risk"
+  }
+]

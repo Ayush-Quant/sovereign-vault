@@ -1,0 +1,24 @@
+{
+  "categories": {
+    "deep_creation": {
+      "role": "High-Friction / Deep Focus",
+      "apps": ["antigravity", "code", "cursor", "pycharm", "intellij", "terminal", "iterm2", "powershell", "git", "docker", "jupyter", "colab", "figma", "blender", "autocad"]
+    },
+    "analytical_research": {
+      "role": "High-Friction / Structured Synthesis",
+      "apps": ["winword", "excel", "powerpnt", "notion", "obsidian", "overleaf", "bloomberg", "zerodha", "tradingview", "acrobat", "arxiv", "pubmed"]
+    },
+    "communication_ops": {
+      "role": "Medium-Friction / Context-Switch Heavy",
+      "apps": ["slack", "teams", "discord", "whatsapp", "telegram", "mail", "outlook", "zoom", "meet"]
+    },
+    "passive_media": {
+      "role": "Context-Dependent / Dopamine Sink",
+      "apps": ["youtube", "reddit", "twitter", "x", "instagram", "linkedin", "facebook", "netflix", "twitch", "spotify"]
+    },
+    "decompression": {
+      "role": "Intentional Decompression / Gaming",
+      "apps": ["steam", "epicgames", "riotclient", "league of legends", "dota"]
+    }
+  }
+}
