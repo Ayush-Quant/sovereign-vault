@@ -9,31 +9,31 @@ from core.local_vault import init_db
 from cohort.simulator import run_cohort_simulation
 
 st.set_page_config(
-    page_title="Sovereign Vault | Biometric Cognitive Monitor",
+    page_title="Sovereign Vault | 3D Biometric Cognitive Monitor",
     page_icon="🛡️",
     layout="wide"
 )
 
-# --- BIOMETRIC & SAAS DESIGN SYSTEM (Inspired by High-End Health/ECG UIs) ---
+# --- 3D LIGHT-MODE BIOMETRIC DESIGN SYSTEM ---
 st.markdown("""
 <style>
-    /* Global Background & Typography */
+    /* Global Light Background & Typography */
     .stApp {
-        background-color: #050508;
-        color: #f1f5f9;
+        background-color: #F8FAFC;
+        color: #0F172A;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* Top Header Bar */
+    /* Top Floating 3D Header Bar */
     .biometric-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.25rem 1.5rem;
-        background: rgba(17, 24, 39, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 1.25rem 1.75rem;
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
         border-radius: 16px;
-        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
         margin-bottom: 2rem;
     }
     
@@ -41,16 +41,16 @@ st.markdown("""
         font-size: 1.25rem;
         font-weight: 700;
         letter-spacing: -0.02em;
-        color: #ffffff;
+        color: #0F172A;
         display: flex;
         align-items: center;
         gap: 0.75rem;
     }
     
     .live-badge {
-        background-color: rgba(16, 185, 129, 0.1);
-        color: #34d399;
-        border: 1px solid rgba(16, 185, 129, 0.2);
+        background-color: #ECFDF5;
+        color: #059669;
+        border: 1px solid #A7F3D0;
         padding: 0.3rem 0.85rem;
         border-radius: 9999px;
         font-size: 0.7rem;
@@ -60,9 +60,9 @@ st.markdown("""
     }
 
     .alert-badge {
-        background-color: rgba(239, 68, 68, 0.1);
-        color: #f87171;
-        border: 1px solid rgba(239, 68, 68, 0.2);
+        background-color: #FEF2F2;
+        color: #DC2626;
+        border: 1px solid #FECACA;
         padding: 0.3rem 0.85rem;
         border-radius: 9999px;
         font-size: 0.7rem;
@@ -71,26 +71,32 @@ st.markdown("""
         letter-spacing: 0.05em;
     }
 
-    /* Biometric Card Containers */
+    /* 3D Elevated Card Containers */
     .bio-card {
-        background: rgba(13, 17, 23, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 16px;
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 18px;
         padding: 1.75rem;
         margin-bottom: 1.25rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .bio-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.08), 0 12px 12px -5px rgba(0, 0, 0, 0.05);
     }
     
     .bio-card-critical {
-        background: linear-gradient(145deg, rgba(20, 10, 10, 0.9) 0%, rgba(13, 17, 23, 0.9) 100%);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        border-radius: 16px;
+        background: linear-gradient(145deg, #FFFFFF 0%, #FEF2F2 100%);
+        border: 1px solid #FCA5A5;
+        border-radius: 18px;
         padding: 1.75rem;
         margin-bottom: 1.25rem;
-        box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(239, 68, 68, 0.08), 0 10px 10px -5px rgba(239, 68, 68, 0.04);
     }
 
-    /* Process Tags (Pills) */
+    /* Process Tags (3D Pills) */
     .process-pill-container {
         display: flex;
         flex-wrap: wrap;
@@ -100,54 +106,56 @@ st.markdown("""
     }
     
     .process-pill {
-        background: rgba(99, 102, 241, 0.1);
-        color: #a5b4fc;
-        border: 1px solid rgba(99, 102, 241, 0.2);
+        background: #EEF2FF;
+        color: #4F46E5;
+        border: 1px solid #C7D2FE;
         padding: 0.35rem 0.85rem;
         border-radius: 8px;
         font-size: 0.8rem;
         font-family: monospace;
         font-weight: 600;
+        box-shadow: 0 2px 4px rgba(79, 70, 229, 0.05);
     }
 
-    /* Custom Streamlit Buttons */
+    /* Custom Streamlit Buttons with 3D Depth */
     .stButton>button {
-        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
-        color: #ffffff !important;
+        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%) !important;
+        color: #FFFFFF !important;
         font-weight: 600;
         border: none;
-        border-radius: 10px;
-        padding: 0.7rem 1.5rem;
-        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
         transition: all 0.2s ease;
         width: 100%;
     }
     
     .stButton>button:hover {
-        background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
-        transform: translateY(-1px);
+        background: linear-gradient(135deg, #4338CA 0%, #4F46E5 100%) !important;
+        box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.6);
+        transform: translateY(-2px);
     }
 
     /* Tabs Styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
-        background-color: #0b0f19;
+        background-color: #E2E8F0;
         padding: 6px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 14px;
+        border: 1px solid #CBD5E1;
     }
 
     .stTabs [data-baseweb="tab"] {
-        border-radius: 8px;
-        color: #94a3b8;
+        border-radius: 10px;
+        color: #64748B;
         font-weight: 600;
         padding: 10px 20px;
     }
 
     .stTabs [aria-selected="true"] {
-        background-color: #1e293b !important;
-        color: #ffffff !important;
+        background-color: #FFFFFF !important;
+        color: #0F172A !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -155,11 +163,11 @@ st.markdown("""
 # Initialize database
 init_db()
 
-# Top Biometric Header
+# Top 3D Biometric Header
 st.markdown("""
 <div class="biometric-header">
     <div class="brand-title">
-        <span>🛡️</span> SOVEREIGN VAULT <span style="font-size: 0.75rem; font-weight: 400; color: #64748b;">// BIOMETRIC COGNITIVE MONITOR</span>
+        <span>🛡️</span> SOVEREIGN VAULT <span style="font-size: 0.75rem; font-weight: 400; color: #64748B;">// 3D LIGHT COGNITIVE MONITOR</span>
     </div>
     <div>
         <span class="live-badge">● PERIMETER SECURE</span>
@@ -171,7 +179,7 @@ st.markdown("""
 tab1, tab2, tab3 = st.tabs(["⚡ Live Telemetry & ECG", "🌐 Population Matrix", "📋 Feedback Vault"])
 
 with tab1:
-    # Sidebar Controls styled as Biometric Deck
+    # Sidebar Controls
     st.sidebar.markdown("### 🎛️ Telemetry Calibration")
     st.sidebar.markdown("Adjust working memory strain parameters.")
     simulated_entropy = st.sidebar.slider("Cognitive Entropy Index", 0.0, 1.0, 0.85, 0.05)
@@ -180,7 +188,6 @@ with tab1:
     st.sidebar.markdown("### 🔍 Active Process Context")
     app_input = st.sidebar.text_area("Currently Active Windows/Tabs", "Antigravity, MS Word, Slack, Browser Tabs (x14)")
     
-    # Parse apps into neat clean biometric pills
     apps_list = [app.strip() for app in app_input.split(",") if app.strip()]
 
     col1, col2 = st.columns([1, 1], gap="large")
@@ -192,30 +199,30 @@ with tab1:
             st.markdown(f"""
             <div class="bio-card-critical">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 700; color: #f87171; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: ATTENTION RESIDUE OVERLOAD</span>
+                    <span style="font-weight: 700; color: #DC2626; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: ATTENTION RESIDUE OVERLOAD</span>
                     <span class="alert-badge">Critical Risk</span>
                 </div>
-                <div style="font-size: 3.5rem; font-weight: 800; color: #ffffff; margin: 0.5rem 0; letter-spacing: -0.03em;">
-                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #f87171; font-weight: 600;">%</span>
+                <div style="font-size: 3.5rem; font-weight: 800; color: #0F172A; margin: 0.5rem 0; letter-spacing: -0.03em;">
+                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #DC2626; font-weight: 600;">%</span>
                 </div>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">High context-switching frequency detected. Estimated cognitive penalty: ~23 minutes per switch.</p>
+                <p style="color: #475569; font-size: 0.9rem; margin: 0;">High context-switching frequency detected. Estimated cognitive penalty: ~23 minutes per switch.</p>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown(f"""
             <div class="bio-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 700; color: #34d399; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: DEEP FOCUS BASELINE</span>
+                    <span style="font-weight: 700; color: #059669; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: DEEP FOCUS BASELINE</span>
                     <span class="live-badge">Optimal</span>
                 </div>
-                <div style="font-size: 3.5rem; font-weight: 800; color: #ffffff; margin: 0.5rem 0; letter-spacing: -0.03em;">
-                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #34d399; font-weight: 600;">%</span>
+                <div style="font-size: 3.5rem; font-weight: 800; color: #0F172A; margin: 0.5rem 0; letter-spacing: -0.03em;">
+                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #059669; font-weight: 600;">%</span>
                 </div>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">Working memory perimeter secure. Friction levels within safe tolerance.</p>
+                <p style="color: #475569; font-size: 0.9rem; margin: 0;">Working memory perimeter secure. Friction levels within safe tolerance.</p>
             </div>
             """, unsafe_allow_html=True)
 
-        # Render Active Process Context as Neatly Styled Chips/Pills
+        # Render Active Process Context as Neatly Styled 3D Pills
         st.markdown("#### 🔗 Active Friction Sources")
         pills_html = "".join([f'<span class="process-pill">{app}</span>' for app in apps_list])
         st.markdown(f'<div class="process-pill-container">{pills_html}</div>', unsafe_allow_html=True)
@@ -226,7 +233,7 @@ with tab1:
             "Time Window": [f"T-{i}" for i in range(10, 0, -1)],
             "Entropy Index": [0.2, 0.3, 0.35, 0.45, 0.55, 0.65, 0.7, 0.8, 0.82, simulated_entropy]
         })
-        st.line_chart(chart_data, x="Time Window", y="Entropy Index", color="#6366f1")
+        st.line_chart(chart_data, x="Time Window", y="Entropy Index", color="#4F46E5")
 
     with col2:
         st.markdown("### 🧠 Nemotron Socratic Interceptor")
@@ -240,18 +247,18 @@ with tab1:
                 st.markdown(f"""
                 <div class="bio-card-critical" style="margin-top: 0.5rem;">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <span style="color: #f87171; font-size: 1.2rem;">🛡️</span>
-                        <strong style="color: #ffffff; letter-spacing: 0.05em; font-size: 0.95rem;">GUARDIAN INTERVENTION DIRECTIVE</strong>
+                        <span style="color: #DC2626; font-size: 1.2rem;">🛡️</span>
+                        <strong style="color: #0F172A; letter-spacing: 0.05em; font-size: 0.95rem;">GUARDIAN INTERVENTION DIRECTIVE</strong>
                     </div>
-                    <div style="color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; font-family: monospace;">{guardian_response}</div>
+                    <div style="color: #1E293B; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; font-family: monospace;">{guardian_response}</div>
                 </div>
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
             <div class="bio-card" style="text-align: center; padding: 3rem 1.5rem;">
                 <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
-                <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem;">System on standby. Trigger the interceptor to evaluate telemetry and receive your tailored load-shedding directive.</p>
-                <span style="display: inline-block; padding: 0.4rem 0.85rem; background: rgba(99, 102, 241, 0.1); color: #818cf8; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Engine: nvidia/Nemotron-3.5-Super-VL</span>
+                <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 1.5rem;">System on standby. Trigger the interceptor to evaluate telemetry and receive your tailored load-shedding directive.</p>
+                <span style="display: inline-block; padding: 0.4rem 0.85rem; background: #EEF2FF; color: #4F46E5; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid #C7D2FE;">Engine: nvidia/Nemotron-3.5-Super-VL</span>
             </div>
             """, unsafe_allow_html=True)
 
@@ -323,4 +330,4 @@ with tab3:
 
 st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #475569; font-size: 0.8rem;'>SOVEREIGN VAULT // BIOMETRIC COGNITIVE GUARD & LOAD-SHEDDING ENGINE</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748B; font-size: 0.8rem;'>SOVEREIGN VAULT // 3D BIOMETRIC COGNITIVE GUARD & LOAD-SHEDDING ENGINE</p>", unsafe_allow_html=True)
