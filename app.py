@@ -3,114 +3,129 @@ import time
 import pandas as pd
 import json
 import os
+import requests
 from core.agent_engine import generate_socratic_reframing
 from core.local_vault import init_db
 from cohort.simulator import run_cohort_simulation
 
 st.set_page_config(
-    page_title="Sovereign Vault | Cognitive Intelligence",
+    page_title="Sovereign Vault | Biometric Cognitive Monitor",
     page_icon="🛡️",
     layout="wide"
 )
 
-# --- ELITE SAAS DESIGN SYSTEM (Linear / Vercel Inspired) ---
+# --- BIOMETRIC & SAAS DESIGN SYSTEM (Inspired by High-End Health/ECG UIs) ---
 st.markdown("""
 <style>
-    /* Global Page Styling */
+    /* Global Background & Typography */
     .stApp {
-        background-color: #090d16;
-        color: #f3f4f6;
+        background-color: #050508;
+        color: #f1f5f9;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     
-    /* Clean Top Header / Nav Bar */
-    .app-header {
+    /* Top Header Bar */
+    .biometric-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.25rem 1.5rem;
+        background: rgba(17, 24, 39, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        backdrop-filter: blur(12px);
         margin-bottom: 2rem;
     }
     
     .brand-title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 700;
-        letter-spacing: -0.025em;
+        letter-spacing: -0.02em;
         color: #ffffff;
         display: flex;
         align-items: center;
         gap: 0.75rem;
     }
     
-    .status-badge {
+    .live-badge {
         background-color: rgba(16, 185, 129, 0.1);
         color: #34d399;
         border: 1px solid rgba(16, 185, 129, 0.2);
-        padding: 0.25rem 0.75rem;
+        padding: 0.3rem 0.85rem;
         border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 600;
+        font-size: 0.7rem;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
 
-    .status-badge-alert {
+    .alert-badge {
         background-color: rgba(239, 68, 68, 0.1);
         color: #f87171;
         border: 1px solid rgba(239, 68, 68, 0.2);
-        padding: 0.25rem 0.75rem;
+        padding: 0.3rem 0.85rem;
         border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 600;
+        font-size: 0.7rem;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
 
-    /* Modern Card Containers */
-    .saas-card {
-        background-color: #111827;
+    /* Biometric Card Containers */
+    .bio-card {
+        background: rgba(13, 17, 23, 0.8);
         border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        padding: 1.75rem;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
     
-    .saas-card-highlight {
-        background: linear-gradient(145deg, #111827 0%, #1f2937 100%);
+    .bio-card-critical {
+        background: linear-gradient(145deg, rgba(20, 10, 10, 0.9) 0%, rgba(13, 17, 23, 0.9) 100%);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 16px;
+        padding: 1.75rem;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);
+    }
+
+    /* Process Tags (Pills) */
+    .process-pill-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .process-pill {
+        background: rgba(99, 102, 241, 0.1);
+        color: #a5b4fc;
         border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Typography Overrides */
-    h1, h2, h3 {
-        color: #ffffff !important;
+        padding: 0.35rem 0.85rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-family: monospace;
         font-weight: 600;
-        letter-spacing: -0.025em;
-    }
-    
-    p, span, label {
-        color: #9ca3af;
     }
 
-    /* Streamlit Button Overrides (SaaS Gradient Style) */
+    /* Custom Streamlit Buttons */
     .stButton>button {
         background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
         color: #ffffff !important;
         font-weight: 600;
         border: none;
-        border-radius: 8px;
-        padding: 0.6rem 1.25rem;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        border-radius: 10px;
+        padding: 0.7rem 1.5rem;
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
         transition: all 0.2s ease;
+        width: 100%;
     }
     
     .stButton>button:hover {
         background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
-        box-shadow: 0 6px 16px rgba(79, 70, 229, 0.5);
+        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
         transform: translateY(-1px);
     }
 
@@ -118,20 +133,20 @@ st.markdown("""
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
         background-color: #0b0f19;
-        padding: 4px;
-        border-radius: 8px;
+        padding: 6px;
+        border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .stTabs [data-baseweb="tab"] {
-        border-radius: 6px;
-        color: #9ca3af;
-        font-weight: 500;
-        padding: 8px 16px;
+        border-radius: 8px;
+        color: #94a3b8;
+        font-weight: 600;
+        padding: 10px 20px;
     }
 
     .stTabs [aria-selected="true"] {
-        background-color: #1f2937 !important;
+        background-color: #1e293b !important;
         color: #ffffff !important;
     }
 </style>
@@ -140,56 +155,71 @@ st.markdown("""
 # Initialize database
 init_db()
 
-# Custom Header
+# Top Biometric Header
 st.markdown("""
-<div class="app-header">
+<div class="biometric-header">
     <div class="brand-title">
-        <span>🛡️</span> Sovereign Vault <span style="font-size: 0.85rem; font-weight: 400; color: #6b7280; margin-left: 0.5rem;">Cognitive Intelligence Engine</span>
+        <span>🛡️</span> SOVEREIGN VAULT <span style="font-size: 0.75rem; font-weight: 400; color: #64748b;">// BIOMETRIC COGNITIVE MONITOR</span>
     </div>
     <div>
-        <span class="status-badge">● Secure Bastion Active</span>
+        <span class="live-badge">● PERIMETER SECURE</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # Main Navigation Tabs
-tab1, tab2 = st.tabs(["⚡ Live Telemetry & Guardian", "�� Population Stress Matrix"])
+tab1, tab2, tab3 = st.tabs(["⚡ Live Telemetry & ECG", "🌐 Population Matrix", "📋 Feedback Vault"])
 
 with tab1:
-    # Sidebar Controls
-    st.sidebar.markdown("### 🎛️ Telemetry Parameters")
-    st.sidebar.markdown("Simulate active working memory pressure.")
+    # Sidebar Controls styled as Biometric Deck
+    st.sidebar.markdown("### 🎛️ Telemetry Calibration")
+    st.sidebar.markdown("Adjust working memory strain parameters.")
     simulated_entropy = st.sidebar.slider("Cognitive Entropy Index", 0.0, 1.0, 0.85, 0.05)
-    recent_apps = st.sidebar.text_input("Active Process Context", "Antigravity, MS Word, Slack, Browser Tabs (x14)")
+    
+    st.sidebar.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+    st.sidebar.markdown("### 🔍 Active Process Context")
+    app_input = st.sidebar.text_area("Currently Active Windows/Tabs", "Antigravity, MS Word, Slack, Browser Tabs (x14)")
+    
+    # Parse apps into neat clean biometric pills
+    apps_list = [app.strip() for app in app_input.split(",") if app.strip()]
 
     col1, col2 = st.columns([1, 1], gap="large")
 
     with col1:
-        st.markdown("### 📊 Entropy & Friction Stream")
+        st.markdown("### 📈 Brain Entropy Vital Stream")
         
         if simulated_entropy > 0.7:
             st.markdown(f"""
-            <div class="saas-card" style="border-left: 4px solid #ef4444;">
+            <div class="bio-card-critical">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 600; color: #f87171;">CRITICAL FRICTION SPIKE</span>
-                    <span class="status-badge-alert">Risk: High</span>
+                    <span style="font-weight: 700; color: #f87171; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: ATTENTION RESIDUE OVERLOAD</span>
+                    <span class="alert-badge">Critical Risk</span>
                 </div>
-                <h2 style="margin: 0.5rem 0 0.25rem 0; font-size: 2rem;">{simulated_entropy * 100:.0f}%</h2>
-                <p style="margin: 0; font-size: 0.875rem;">Attention residue overload. Estimated cognitive penalty: ~23 minutes per context switch.</p>
+                <div style="font-size: 3.5rem; font-weight: 800; color: #ffffff; margin: 0.5rem 0; letter-spacing: -0.03em;">
+                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #f87171; font-weight: 600;">%</span>
+                </div>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">High context-switching frequency detected. Estimated cognitive penalty: ~23 minutes per switch.</p>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown(f"""
-            <div class="saas-card" style="border-left: 4px solid #10b981;">
+            <div class="bio-card">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 600; color: #34d399;">STABLE BASELINE</span>
-                    <span class="status-badge">Optimal</span>
+                    <span style="font-weight: 700; color: #34d399; font-size: 0.85rem; letter-spacing: 0.05em;">STATE: DEEP FOCUS BASELINE</span>
+                    <span class="live-badge">Optimal</span>
                 </div>
-                <h2 style="margin: 0.5rem 0 0.25rem 0; font-size: 2rem;">{simulated_entropy * 100:.0f}%</h2>
-                <p style="margin: 0; font-size: 0.875rem;">Working memory perimeter secure. Minimal friction detected.</p>
+                <div style="font-size: 3.5rem; font-weight: 800; color: #ffffff; margin: 0.5rem 0; letter-spacing: -0.03em;">
+                    {simulated_entropy * 100:.0f}<span style="font-size: 1.5rem; color: #34d399; font-weight: 600;">%</span>
+                </div>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">Working memory perimeter secure. Friction levels within safe tolerance.</p>
             </div>
             """, unsafe_allow_html=True)
-        
+
+        # Render Active Process Context as Neatly Styled Chips/Pills
+        st.markdown("#### 🔗 Active Friction Sources")
+        pills_html = "".join([f'<span class="process-pill">{app}</span>' for app in apps_list])
+        st.markdown(f'<div class="process-pill-container">{pills_html}</div>', unsafe_allow_html=True)
+
         st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
         
         chart_data = pd.DataFrame({
@@ -200,27 +230,28 @@ with tab1:
 
     with col2:
         st.markdown("### 🧠 Nemotron Socratic Interceptor")
-        st.markdown("Execute autonomous load-shedding to clear working memory.")
+        st.markdown("Execute real-time load-shedding to clear working memory.")
         
-        st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='height: 15px;'></div>", unsafe_allow_html=True)
         
         if st.button("🚨 EXECUTE LOAD-SHEDDING PROTOCOL"):
             with st.spinner("Nebius Token Factory computing cognitive vector..."):
-                guardian_response = generate_socratic_reframing(simulated_entropy, recent_apps)
+                guardian_response = generate_socratic_reframing(simulated_entropy, app_input)
                 st.markdown(f"""
-                <div class="saas-card-highlight" style="margin-top: 1rem;">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                        <span style="color: #6366f1; font-size: 1.2rem;">🛡️</span>
-                        <strong style="color: #ffffff; letter-spacing: 0.025em;">GUARDIAN DIRECTIVE</strong>
+                <div class="bio-card-critical" style="margin-top: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="color: #f87171; font-size: 1.2rem;">🛡️</span>
+                        <strong style="color: #ffffff; letter-spacing: 0.05em; font-size: 0.95rem;">GUARDIAN INTERVENTION DIRECTIVE</strong>
                     </div>
-                    <div style="color: #e5e7eb; font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap;">{guardian_response}</div>
+                    <div style="color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; font-family: monospace;">{guardian_response}</div>
                 </div>
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-            <div class="saas-card" style="text-align: center; padding: 2.5rem 1.5rem;">
-                <p style="color: #6b7280; margin-bottom: 1rem;">System on standby. Trigger the interceptor to evaluate telemetry and receive your tailored load-shedding directive.</p>
-                <span style="display: inline-block; padding: 0.35rem 0.75rem; background: rgba(99, 102, 241, 0.1); color: #818cf8; border-radius: 6px; font-size: 0.8rem; font-weight: 500;">Model: nvidia/Nemotron-3.5-Super-VL</span>
+            <div class="bio-card" style="text-align: center; padding: 3rem 1.5rem;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛡️</div>
+                <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem;">System on standby. Trigger the interceptor to evaluate telemetry and receive your tailored load-shedding directive.</p>
+                <span style="display: inline-block; padding: 0.4rem 0.85rem; background: rgba(99, 102, 241, 0.1); color: #818cf8; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(99, 102, 241, 0.2);">Engine: nvidia/Nemotron-3.5-Super-VL</span>
             </div>
             """, unsafe_allow_html=True)
 
@@ -256,6 +287,40 @@ with tab2:
     else:
         st.warning("No simulation telemetry detected. Click 'Re-run Simulation Matrix' above.")
 
+with tab3:
+    st.markdown("### 📋 User Feedback & Telemetry Log")
+    st.markdown("Submit your testing feedback directly into our secure Google Sheets vault.")
+    
+    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+    
+    with st.form("feedback_form"):
+        fb_name = st.text_input("Your Name")
+        fb_email = st.text_input("Your Email Address")
+        fb_feedback = st.text_area("Your Feedback / Comments")
+        
+        submitted = st.form_submit_button("Submit Feedback to Google Sheets")
+        if submitted:
+            if fb_name and fb_email and fb_feedback:
+                # Replace with your actual Google Apps Script Web App URL
+                WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz.../exec"
+                
+                payload = {
+                    "name": fb_name,
+                    "email": fb_email,
+                    "feedback": fb_feedback
+                }
+                
+                try:
+                    response = requests.post(WEB_APP_URL, json=payload)
+                    if response.status_code == 200:
+                        st.success("Thank you! Your feedback has been securely logged to the Google Sheet.")
+                    else:
+                        st.error("Failed to log feedback. Please check your Web App URL.")
+                except Exception as e:
+                    st.error(f"Connection error: {e}")
+            else:
+                st.warning("Please fill out all fields before submitting.")
+
 st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #4b5563; font-size: 0.8rem;'>SOVEREIGN VAULT // PRIVACY-PRESERVING COGNITIVE GUARDIAN & LOAD-SHEDDING ENGINE</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #475569; font-size: 0.8rem;'>SOVEREIGN VAULT // BIOMETRIC COGNITIVE GUARD & LOAD-SHEDDING ENGINE</p>", unsafe_allow_html=True)
