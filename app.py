@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- 3D LIGHT-MODE BIOMETRIC DESIGN SYSTEM ---
+# --- 3D LIGHT-MODE BIOMETRIC DESIGN SYSTEM (FIXED TABS) ---
 st.markdown("""
 <style>
     /* Global Light Background & Typography */
@@ -136,7 +136,7 @@ st.markdown("""
         transform: translateY(-2px);
     }
 
-    /* Tabs Styling */
+    /* Fixed High-Contrast Tabs Styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
         background-color: #E2E8F0;
@@ -147,15 +147,23 @@ st.markdown("""
 
     .stTabs [data-baseweb="tab"] {
         border-radius: 10px;
-        color: #64748B;
-        font-weight: 600;
+        background-color: transparent;
         padding: 10px 20px;
+    }
+
+    .stTabs [data-baseweb="tab"] p {
+        color: #0F172A !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
     }
 
     .stTabs [aria-selected="true"] {
         background-color: #FFFFFF !important;
-        color: #0F172A !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+    
+    .stTabs [aria-selected="true"] p {
+        color: #4F46E5 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -308,7 +316,6 @@ with tab3:
         submitted = st.form_submit_button("Submit Feedback to Google Sheets")
         if submitted:
             if fb_name and fb_email and fb_feedback:
-                # Replace with your actual Google Apps Script Web App URL
                 WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz.../exec"
                 
                 payload = {
