@@ -244,23 +244,40 @@ with tab1:
 # Inside your app.py, where your tabs are defined:
 tab1, tab2, tab3 = st.tabs(["Live Telemetry", "Population Matrix", "Feedback Vault"])
 
-with tab1:
-    # Your Tab 1 content (Live telemetry, stress score, Tavily-backed Socratic Guardian)
-    pass
-
 with tab2:
-    st.markdown("### Professional Cohort Stress Matrix")
-    st.markdown("Evaluating burnout thresholds and stress scores across a simulated 100-persona professional cohort.")
+    st.markdown("### 🌐 Team Stress Dashboard (100 Profiles)")
+    st.markdown("Evaluating team well-being and stress levels across different professional roles.")
     
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Active Cohort Size", "100 Professionals", "0 Risk")
-    col2.metric("Avg Cognitive Load", "64.2%", "-4.1%")
-    col3.metric("Burnout Threshold Risk", "12 Active Alerts", "+2")
-    
-    st.markdown("#### Departmental Vulnerability Breakdown")
-    # Add your data table or metrics display here
-    
- 
+    col_btn, _ = st.columns([1, 3])
+    with col_btn:
+        if st.button("🔄 RE-RUN SIMULATION MATRIX"):
+            run_cohort_simulation()
+            st.success("Simulation matrix refreshed.")
+
+    cohort_file = "cohort/data/simulation_results.json"
+    if os.path.exists(cohort_file):
+        with open(cohort_file, "r") as f:
+            cohort_data = json.load(f)
+            
+        df_cohort = pd.DataFrame(cohort_data)
+        df_cohort = df_cohort.rename(columns={
+            "persona_id": "ID",
+            "role": "Role",
+            "context_switch_rate": "Task Switching Rate",
+            "simulated_entropy": "Stress Score",
+            "status": "Status"
+        })
+        
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Total People Evaluated", len(df_cohort))
+        c2.metric("Balanced & Healthy", len(df_cohort[df_cohort["Status"] == "Balanced"]))
+        c3.metric("Burnout Risks Flagged", len(df_cohort[df_cohort["Status"] == "Burnout Risk"]))
+        
+        st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+        st.markdown("#### Member Details Breakdown")
+        st.dataframe(df_cohort, height=400)
+    else:
+        st.warning("No simulation telemetry detected. Click 'Re-run Simulation Matrix' above.")
 with tab3:
     st.markdown("### 📋 User Feedback & Telemetry Log")
     st.markdown("Submit your testing feedback directly into our secure Google Sheets vault.")
