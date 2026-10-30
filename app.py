@@ -313,7 +313,7 @@ with tab3:
 
             if submitted:
                 if fb_name and fb_email and fb_feedback:
-                    WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz.../exec"
+                    WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxKxTU2MNdOsCkXSSxu6ha_Grlfl7Cr0tmb3hfBKwGtm-iOTRo3DveLfzhiksZR5Ycl/exec"
                     
                     payload = {
                         "name": fb_name,
