@@ -241,13 +241,6 @@ with tab1:
                 <span style="display: inline-block; padding: 0.4rem 0.85rem; background: #EEF2FF; color: #4F46E5; border-radius: 8px; font-size: 0.8rem; font-weight: 600; border: 1px solid #C7D2FE;">Engine: nvidia/Nemotron-3.5-Super-VL</span>
             </div>
             """, unsafe_allow_html=True)
-# Inside your app.py, where your tabs are defined:
-tab1, tab2, tab3 = st.tabs(["Live Telemetry", "Population Matrix", "Feedback Vault"])
-
-# Ensure your main tabs are defined ONLY ONCE at the top level like this:
-tab1, tab2, tab3 = st.tabs(["Live Telemetry & ECG", "Population Matrix", "Feedback Vault"])
-
-# Inside your tab2 block, keep it clean without any redundant selectors:
 with tab2:
     st.markdown("### Team Stress Dashboard (100 Profiles)")
     st.markdown("Evaluating team well-being and stress levels across different professional roles.")
