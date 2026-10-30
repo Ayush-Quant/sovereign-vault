@@ -244,8 +244,12 @@ with tab1:
 # Inside your app.py, where your tabs are defined:
 tab1, tab2, tab3 = st.tabs(["Live Telemetry", "Population Matrix", "Feedback Vault"])
 
+# Ensure your main tabs are defined ONLY ONCE at the top level like this:
+tab1, tab2, tab3 = st.tabs(["Live Telemetry & ECG", "Population Matrix", "Feedback Vault"])
+
+# Inside your tab2 block, keep it clean without any redundant selectors:
 with tab2:
-    st.markdown("### 🌐 Team Stress Dashboard (100 Profiles)")
+    st.markdown("### Team Stress Dashboard (100 Profiles)")
     st.markdown("Evaluating team well-being and stress levels across different professional roles.")
     
     col_btn, _ = st.columns([1, 3])
